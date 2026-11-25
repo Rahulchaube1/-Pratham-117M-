@@ -1,5 +1,9 @@
 # Pratham-117M
 
+[Chat with Pratham](https://huggingface.co/spaces/oncody/Pratham-117M-Chat) · [Model weights and card](https://huggingface.co/oncody/Pratham-117M) · [Live app source](space/static)
+
+The published chat runs on the visitor’s device. It downloads a 148 MB quantized ONNX checkpoint on first use. Its scores matched the original checkpoint at cosine similarity above 0.99999 on two probe sequences. The interface retains conversation history, uses the most recent 128 prompt tokens, and samples up to 32 response tokens per turn. The checkpoint remains an early language-model experiment.
+
 ## Full-size Kaggle training and chat release
 
 [Release notebook](kaggle/Pratham_117M_Release.ipynb) · [Gradio application](space/app.py)
@@ -11,7 +15,7 @@ The Kaggle release workflow is separate from the original Colab lab below. The f
 3. Run Unicode round-trip, shifted-target, causal masking, parameter count, and controlled overfit checks. On the full configuration's tokenizer, a separate small diagnostic network reduced its fixed-batch cross-entropy from 10.614 to 0.596 on Kaggle.
 4. Train with AdamW and FP16 gradient scaling. Each update accumulates four 512-token windows. The planned 400 updates process 819,200 tokens drawn with replacement. Record training metrics and validate after each 100 updates. Held-out evaluation covers up to 8,192 next-token targets per split. Save a Kaggle version with outputs for cross-session recovery.
 5. Export base weights and compare reloaded logits. The supervised stage shuffles Dolly 15k deterministically, filters long prompts, reserves 100 candidate examples for validation, and selects up to 1,024 candidate examples for training. The response tokens drive the supervised loss. The release includes actual example count, mean validation loss per example, corpus hashes and unedited generations.
-6. Verify the separate supervised export, then use the final cell to publish the model and Gradio Space. The cell reads the private Kaggle secret `HF_TOKEN` and checks the namespace `oncody`. The Space loads the exact published model revision and formats conversation history in the same role format used for supervised training.
+6. Verify the separate supervised export, then use the final cell to publish the model and static browser Space. The cell reads the private Kaggle secret `HF_TOKEN` and checks the namespace `oncody`. The Space loads the exact published model revision and formats conversation history in the same role format used for supervised training.
 
 This is a bounded research experiment. The 71,712-parameter smoke model generated incoherent replies; its scores do not measure the full model. Check the exported `release_metrics.json` for completed training measurements. The fine-tuning source is [Databricks Dolly 15k](https://huggingface.co/datasets/databricks/databricks-dolly-15k), licensed under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
 
