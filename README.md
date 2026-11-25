@@ -15,6 +15,20 @@ The Kaggle release workflow is separate from the original Colab lab below. The f
 
 This is a bounded research experiment. The 71,712-parameter smoke model generated incoherent replies; its scores do not measure the full model. Check the exported `release_metrics.json` for completed training measurements. The fine-tuning source is [Databricks Dolly 15k](https://huggingface.co/datasets/databricks/databricks-dolly-15k), licensed under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
 
+### Completed base run on Kaggle
+
+| Measurement | Value |
+|---|---:|
+| Optimizer updates | 400 |
+| Next-token targets processed | 819,200 |
+| Final training microbatch-averaged loss | 5.0580 |
+| Validation loss / perplexity | 6.0356 / 418.06 |
+| Test loss / perplexity | 6.3274 / 559.70 |
+| Test top-1 / top-5 next-token accuracy | 12.04% / 29.48% |
+| Targets evaluated in each held-out book | 8,192 |
+
+The metrics above describe the base model immediately before supervised adaptation. They establish a measured baseline for subsequent training.
+
 ## Original Colab teaching lab
 
 An educational, from-scratch GPT-1-inspired language-model lab, implemented in a Google Colab-compatible Jupyter notebook and designed to be edited in Visual Studio Code.
