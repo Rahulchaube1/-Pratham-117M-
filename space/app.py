@@ -39,4 +39,4 @@ def respond(message, history):
     text = tokenizer.decode(output).split("\nUser:")[0].strip()
     return text or "[The model ended this reply immediately.]"
 if __name__ == "__main__":
-    gr.ChatInterface(respond,title="Pratham-117M",description="Experimental English model trained from scratch. Responses can be inaccurate or incoherent.").queue(default_concurrency_limit=1).launch()
+    gr.ChatInterface(respond,type="messages",title="Pratham-117M",description="Experimental English model trained from scratch. Responses can be inaccurate or incoherent.").queue(default_concurrency_limit=1).launch()
