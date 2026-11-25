@@ -4,6 +4,10 @@
 
 The 1B experiment starts with Liquid AI's LFM2.5-1.2B-Instruct (1,170,340,608 base parameters). On Kaggle, a trainable linear correction to the model’s output scores was fit on **8,192 Databricks Dolly dialogue examples**, totaling **590,847 supervised response tokens**. Validation used 128 separate examples. Response-token cross-entropy fell from **2.1949 to 2.1766**. These figures measure the additional training performed for Pratham. The upstream model supplied its pretrained language and instruction-following abilities.
 
+[Chat with Pratham-1B](https://huggingface.co/spaces/oncody/Pratham-1B-Chat) · [Download the 1B checkpoint](https://huggingface.co/oncody/Pratham-1B-Instruct) · [Raw evaluation results](https://huggingface.co/oncody/Pratham-1B-Instruct/blob/main/evaluation.json)
+
+Both the upstream and adapted checkpoints passed 6 of 8 exact-answer checks. The model identified the box colors, answered two plus two, and tracked a correction across turns. It missed the subtraction question; its semantically correct missing-information answer also failed the one-word format. The standalone checkpoint has **1,304,558,336 parameters**, including a separate output projection that incorporates the trained correction.
+
 [Training and release notebook](pratham_1b/Pratham_1B_Kaggle.ipynb) · [Answer-quality checks](pratham_1b/evaluate_answers.py)
 
 ## Pratham-117M
