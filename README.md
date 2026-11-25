@@ -29,6 +29,10 @@ This is a bounded research experiment. The 71,712-parameter smoke model generate
 
 The metrics above describe the base model immediately before supervised adaptation. They establish a measured baseline for subsequent training.
 
+### Completed instruction tuning and release checks
+
+Training used 1,024 Dolly examples. Mean held-out response cross-entropy decreased from **8.7076 to 6.8998**. The exported 116,534,784-parameter checkpoint was reloaded into a fresh CPU model and its probe logits matched the Kaggle model within the configured tolerance. The model replied “Sis is a great popular.” to “Hello!” and failed the arithmetic and rainfall questions. Treat this checkpoint as an early research release with limited conversational ability.
+
 ## Original Colab teaching lab
 
 An educational, from-scratch GPT-1-inspired language-model lab, implemented in a Google Colab-compatible Jupyter notebook and designed to be edited in Visual Studio Code.
